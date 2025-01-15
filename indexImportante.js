@@ -4,8 +4,47 @@ const ingresso = document.getElementById('ingresso');
 const testorisultato = document.getElementById('testorisultato');
 
 // funzione per verificare se una parola è palindroma
+function verificaParola(parola) {
+  for (let i = 0; i < parola.length / 2; i++) {
+    if (parola[i] != parola[parola.length - 1 - i]) {
+      testorisultato.style.color = "red";       // cambiare colore al tetso che esce
+      return "Non è una parola palindroma.";    //scritta che esce quando scrivi una parola palindroma
+    }
+  }
+  testorisultato.style.color = "green";         // cambiare colore al tetso che esce 
+  return "È una parola palindroma!";
+}
+
+function palindroma() {
+  const parolamessa = ingresso.value;               // contiene il valore digitato dall'utente
+  if (parolamessa.trim() == "") {        // quando non scrivi niente tipo spazio e basta parte la scritta
+    testorisultato.style.color = "gray";                // cambiare colore al tetso che esce 
+    testorisultato.textContent = "Inserisci una parola valida!";
+  } else {
+    const risultato = verificaParola(parolamessa);      // verifica se è una parola palindroma
+    testorisultato.textContent = risultato;      // mostra il risultato 
+  }
+};
+
+// bottone 
+bottone.addEventListener('click', palindroma);
+
+// keydown tasto invio tastiera
+ingresso.addEventListener('keydown', function (event) {
+  if (event.key == "Enter") {
+    event.preventDefault();
+    palindroma();
+  }
+});
+/*
+ sleziono gli elementi in html
+const bottone = document.getElementById('bottone');
+const ingresso = document.getElementById('ingresso');
+const testorisultato = document.getElementById('testorisultato');
+
+// funzione per verificare se una parola è palindroma
 function palindroma(parola) {
-  for (let i = 0;  i < parola.length / 2; i++) {   //loop
+  for (let i = 0; i < parola.length / 2; i++) {   //loop
     if (parola[i] != parola[parola.length - 1 - i]) {
       testorisultato.style.color = "red";  // cambiare colore al tetso che esce
       return "Non è una parola palindroma."; //scritta che esce quando scrivi una parola palindroma
@@ -16,7 +55,7 @@ function palindroma(parola) {
 }
 
 // quando viene cliccato bottone parte la funzione
-function verificaParola() {
+bottone.addEventListener('click', function () {
   const parolamessa = ingresso.value;               // contiene il valore digitato dall'utente
   if (parolamessa.trim() === "") {        // quando non scrivi niente tipo spazio e basta parte la scritta
     testorisultato.style.color = "gray";                // cambiare colore al tetso che esce 
@@ -25,15 +64,5 @@ function verificaParola() {
     const risultato = palindroma(parolamessa);      // verifica se è una parola palindroma
     testorisultato.textContent = risultato;      // mostra il risultato 
   }
-};
-
-// Quando viene cliccato il bottone parte la funzione
-bottone.addEventListener('click', verificaParola);
-
-// Aggiungo l'evento "keydown" per il tasto "Invio"
-ingresso.addEventListener('keydown', function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    verificaParola();
-  }
 });
+*/
